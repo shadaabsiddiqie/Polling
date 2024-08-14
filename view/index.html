@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Content Viewer</title>
+</head>
+<body>
+    <pre id="file-content"></pre>
+    <script>
+        function fetchFileContent() {
+            fetch('/setData')
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                    document.getElementById('file-content').textContent = data;
+                })
+                .catch(error => console.error('Error fetching file:', error));
+        }
+
+        // Fetch file content every 2 seconds
+        setInterval(fetchFileContent, 2000);
+    </script>
+</body>
+</html>
